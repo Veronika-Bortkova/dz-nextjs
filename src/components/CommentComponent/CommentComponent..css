@@ -1,0 +1,13 @@
+.comment {
+    padding: 5px;
+}
+
+.comment a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.comment a:hover {
+    text-decoration: underline;
+    text-decoration-color: #000000;
+}

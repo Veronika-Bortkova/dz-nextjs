@@ -1,0 +1,13 @@
+.user {
+    padding: 5px;
+}
+
+.user a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.user a:hover {
+    text-decoration: underline;
+    text-decoration-color: #000000;
+}

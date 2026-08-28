@@ -1,0 +1,13 @@
+.post {
+    padding: 5px;
+}
+
+.post a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.post a:hover {
+    text-decoration: underline;
+    text-decoration-color: #000000;
+}

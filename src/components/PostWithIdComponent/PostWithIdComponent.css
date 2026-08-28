@@ -1,0 +1,8 @@
+.postId{
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    width: 500px;
+    text-align: justify;
+    gap: 20px;
+}

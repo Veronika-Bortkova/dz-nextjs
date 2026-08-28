@@ -1,0 +1,9 @@
+.cardUser{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+h1 {
+    margin-bottom: 15px;
+}
