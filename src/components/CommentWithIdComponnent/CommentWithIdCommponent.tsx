@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import "./CommentWithIdComponnent.css"
+import {IComment} from "@/src/models/CommentModel";
 
 type Props = {
     comment: IComment

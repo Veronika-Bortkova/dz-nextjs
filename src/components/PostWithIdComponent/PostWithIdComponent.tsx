@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IPost} from "@/src/models/UserModel";
+import {IPost} from "@/src/models/PostModel";
 import "./PostWithIdComponent.css"
 
 type Props = {
