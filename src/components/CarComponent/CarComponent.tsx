@@ -9,7 +9,7 @@ type Props = {
 const CarComponent:FC<Props> = ({car}) => {
     return (
         <div className={"car"}>
-            <p>Brend - {car.brand}</p>
+            <p>Brand - {car.brand}</p>
             <p>Price - {car.price} $</p>
             <p>Year - {car.year}</p>
         </div>

@@ -1,27 +1,37 @@
 "use client"
-import React, {useActionState} from 'react';
-import {createCar} from "@/src/server-actions/car-server-actions";
-import "./FormComponent.css"
 
+import "./FormComponent.css"
+import {useForm} from "react-hook-form";
+import {carFormData, carSchema} from "@/src/lib/schema";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {createCar} from "@/src/server-actions/car-server-actions";
 
 
 const FormComponent = () => {
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm<carFormData>({
+        resolver: zodResolver(carSchema),
+        mode: "onChange"
+    });
 
-    const [state, formAction, isPending] = useActionState(createCar, null);
+const onSubmit = async (data: carFormData)=>{
+    await createCar(data)
+
+}
+
     return (
         <>
             <h2>Add Car</h2>
-        <form action={formAction}>
-            <input type={"text"} name={"brand"} placeholder="Brand" disabled={isPending}></input>
-            <div className={"error"}>{state?.errors?.brand && (<p>{state.errors.brand[0]}</p>)}</div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input type={"text"} {...register("brand")} placeholder="Brend" ></input>
+            <div className={"error"}>{errors.brand && (<p>{errors.brand.message}</p>)}</div>
 
-            <input type={"number"} name={"price"} placeholder="Price" disabled={isPending}></input>
-            <div className={"error"}>{state?.errors?.price && (<p>{state.errors.price[0]}</p>)}</div>
+            <input type={"number"} {...register("price", { valueAsNumber: true }) } placeholder="Price" ></input>
+            <div className={"error"}>{errors.price && (<p>{errors.price.message}</p>)}</div>
 
-            <input type={"number"} name={"year"} placeholder="Year" disabled={isPending}></input>
-            <div className={"error"}>{state?.errors?.year && (<p>{state.errors.year[0]}</p>)}</div>
+            <input type={"number"} {...register("year", { valueAsNumber: true })} placeholder="Year"></input>
+            <div className={"error"}>{errors.year && (<p>{errors.year.message}</p>)}</div>
 
-            <button type="submit" disabled={isPending}>Add car</button>
+            <button type="submit" disabled={!isValid}>Add car</button>
 
         </form>
     </>
