@@ -6,16 +6,16 @@ import {redirect} from "next/navigation";
 
 export async function createCar ( data: carFormData):Promise<void>{
 
-    const result = carSchema.safeParse(data);
-    if (!result.success){
-        console.log("error");
+    const { error, value } = carSchema.validate(data);
+    if (error){
+        console.log("Validation error:", error.details);
         throw new Error("Something went wrong!");
     }
-    console.log("success", result.data);
+    console.log("success", value);
     const response = await fetch(targetUrl.allCarsUrl,{
         method: "POST",
         headers:{"Content-Type": "application/json"},
-        body: JSON.stringify(data)
+        body: JSON.stringify(value)
     });
     if (!response.ok) {
         throw new Error("Something went wrong!");

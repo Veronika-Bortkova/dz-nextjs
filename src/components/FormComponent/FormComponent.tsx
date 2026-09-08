@@ -3,13 +3,13 @@
 import "./FormComponent.css"
 import {useForm} from "react-hook-form";
 import {carFormData, carSchema} from "@/src/lib/schema";
-import {zodResolver} from "@hookform/resolvers/zod";
 import {createCar} from "@/src/server-actions/car-server-actions";
+import {joiResolver} from "@hookform/resolvers/joi";
 
 
 const FormComponent = () => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm<carFormData>({
-        resolver: zodResolver(carSchema),
+        resolver: joiResolver(carSchema),
         mode: "onChange"
     });
 
@@ -22,7 +22,7 @@ const onSubmit = async (data: carFormData)=>{
         <>
             <h2>Add Car</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input type={"text"} {...register("brand")} placeholder="Brend" ></input>
+            <input type={"text"} {...register("brand")} placeholder="Brand" ></input>
             <div className={"error"}>{errors.brand && (<p>{errors.brand.message}</p>)}</div>
 
             <input type={"number"} {...register("price", { valueAsNumber: true }) } placeholder="Price" ></input>
